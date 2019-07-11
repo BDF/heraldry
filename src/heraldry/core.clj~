@@ -1,0 +1,70 @@
+(ns heraldry.core
+  (:require [instaparse.core :as insta]        )
+  (:gen-class))
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (println "Hello, World!"))
+
+
+(insta/set-default-output-format! :enlive)
+
+(def as-and-bs
+  (insta/parser
+    "S = AB*
+     AB = (A B) | (B A)
+     A = 'a'+
+     B = 'b'+"))
+
+(def heraldry
+  (insta/parser
+   "S = FIELD
+    FIELD = color | (DIVISION2 | DIVISION3)
+    DIVISION2 = (perPale | quertely | perPall | perChevron) SEP color SEP color
+    DIVISION3 = tiercedInPale SEP color SEP color SEP color
+    <SEP> = <space> | <and>
+    <space> = <#'[, ]+'>
+    <and> =  <#'(?i)[, ]+and\\s+'>
+    color = #'(?i)gules' | #'(?i)or' | #'(?i)argent'
+    perPale = #'(?i)Per\\s+Pale'
+    quertely = #'(?i)Quartely'
+    tiercedInPale = #'(?i)Tierced\\s+in\\s+Pale'
+    perPall = #'(?i)Per\\s+Pall'
+    perChevron = #'(?i)Per\\s+Chevron'"))
+
+(def color
+  (insta/parser
+   "S = COLOR
+    COLOR = OR | GULES
+    GULES = #'(?i)gules'
+    OR = #'(?i)or'"
+   :output-format :enlive))
+
+(def ordinary
+  (insta/parser
+   "S = ORDINARY
+    ORDINARY = BEND | PerPale | Quertely
+    PerPale = #'(?i)Per\\s+Pale'
+    Quertely = #'(?i)Quertely'
+    BEND = #'(?i)a bend'"))
+
+
+(def divisionsOfField
+ "ORDINARY = BEND | PerPale | Quertely | TiercedInPale | PerPall | PerChevron | Barry | PerFess | Paly | PerPile | Gryonny
+    PerPale = #'(?i)Per\\s+Pale'
+    Quertely = #'(?i)Quartely'
+    TiercedInPale = #'(?i)Tierced\\s+in\\+Pale'
+    PerPall = #'(?i)Per\\s+Pall'
+    PerChevron = #'(?i)Per\\s+Chevron'
+    Barry = #'(?i)Barry'
+    PerFess  = #'(?i)Per\\s+Fess'
+    Paly  = #'(?i)Paly'
+    PerPile  = #'(?i)Per\\s+Pile'
+    Gryonny  = #'(?i)Gryonny'
+    BEND = #'(?i)a bend'")
+
+
+
+
+  
