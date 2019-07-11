@@ -1,32 +1,10 @@
 # heraldry
 
-FIXME: description
-
-## Installation
-
-Download from http://example.com/FIXME.
+A very small body of code to parse heraldry blazons.   A blazon is 'a formal description of a coat of arms, flag or similar emblem, from which the reader can reconstruct the appropriate image' (https://en.wikipedia.org/wiki/Blazon).   It will never be 'perfect' since there is so much variation in blazons.
 
 ## Usage
 
-FIXME: explanation
-
-    $ java -jar heraldry-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+Standard lein build.  https://leiningen.org/
 
 ## License
 
